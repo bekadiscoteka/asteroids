@@ -6,19 +6,9 @@ import random
 class Asteroid(CircleShape):
 	def __init__(self, x, y, radius):
 		super().__init__(x, y, radius)
-		try:
-			character_image = pygame.image.load('img/asteroid.jpg').convert_alpha()
-		except pygame.error:
-			# Fallback if you don't have an image file in your folder yet
-			print("Image not found! Creating a placeholder surface instead.")
-			character_image = pygame.Surface((100, 100))
-			character_image.fill((128, 0, 128)) 
-		self.img = pygame.transform.scale(character_image, (radius*2, radius*2))	
 	
 	def draw(self, screen):
 		pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
-		screen.blit(self.img, (self.position.x - self.radius, self.position.y - self.radius))
-
 	
 	def update(self, dt):
 		self.position += self.velocity * dt	
